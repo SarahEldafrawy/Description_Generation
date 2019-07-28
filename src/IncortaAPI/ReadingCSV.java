@@ -19,8 +19,8 @@ public class ReadingCSV {
         BufferedReader csvReader = new BufferedReader(new FileReader(path));
         String row = csvReader.readLine();
         String[] data = row.split(",");
-        this.dimension = data[1];
-        this.measure = data[2];
+        this.dimension = data[1].replaceAll("\"", "");
+        this.measure = data[2].replaceAll("\"", "");
         while ((row = csvReader.readLine()) != null) {
             data = row.split(",");
             dataset.add(new Pair<>(data[1].replaceAll("\"", ""), (Double.parseDouble(data[2].replaceAll("\"", "").substring(0, data[2].indexOf("."))))));
