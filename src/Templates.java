@@ -190,11 +190,6 @@ public class Templates {
         secondSentence = MessageFormat.format(secondSentence,secondSenMap.get("measure_max_value"),
                 secondSenMap.get("dimension_max"),secondSenMap.get("measure_max"));
 
-<<<<<<< HEAD
-        thirdSentence = MessageFormat.format(thirdSentence,thirdSenMap.get("measure_max_value"),
-                thirdSenMap.get("dimension_max"),thirdSenMap.get("measure_max"));
-        fourthSentence = MessageFormat.format(fourthSentence,allPatterns.toString());
-=======
         thirdSentence = MessageFormat.format(thirdSentence,thirdSenMap.get("measure_min_value"),
                 thirdSenMap.get("dimension_min"),thirdSenMap.get("measure_min"));
 
@@ -203,7 +198,6 @@ public class Templates {
         }
         else
             fourthSentence = MessageFormat.format(fourthSentence,allPatterns.toString(),"s");
->>>>>>> fe6d6d2f07a6621766484d4c8fa6b6bc4d9c808f
 
         if(fifthKey.equals("steady")){
             fifthSentence = MessageFormat.format(fifthSentence,dimension,measure);
