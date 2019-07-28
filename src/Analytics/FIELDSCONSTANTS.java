@@ -22,9 +22,9 @@ public class FIELDSCONSTANTS {
     public static final String MEASURE_MAX = "measure_max";
 
     /* Min sentence fields */
-    public static final String MEASURE_MIN_VALUE = "measure_max_value";
-    public static final String DIMENSION_MIN = "dimension_max";
-    public static final String MEASURE_MIN = "measure_max";
+    public static final String MEASURE_MIN_VALUE = "measure_min_value";
+    public static final String DIMENSION_MIN = "dimension_min";
+    public static final String MEASURE_MIN = "measure_min";
 
     /* Rate sentence fields */
     public static final String INCREASING = "increasing";
