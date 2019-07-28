@@ -65,13 +65,20 @@ public class Main {
 
 
     public static void main (String[]args) throws Exception{
-        Main su = new Main();
-
+        //Main su = new Main();
+/*
         su.init("kevin16");
         // high quality
         su.doSpeak("Data can be represented in many ways. The 4 main types of graphs are a bar graph or bar chart, line graph, pie chart, and diagram." +
                 " Bar graphs are used to show relationships between " +
                 "different data series that are independent of each other");
         su.terminate();
+*/
+        DescreptionReader descreptionReader = new DescreptionReader();
+        Templates templates = new Templates();
+        //String inputText = templates.generateDescription(map,arraylist);
+        //input text replace all spaces with +
+        //put it in the url
+        descreptionReader.getFile("http://localhost:59125/process?INPUT_TEXT=Hello+world&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US");
     }
-} 
+}
