@@ -58,7 +58,7 @@ public class Templates {
         templates[0][max] = ",and the highest {2} recorded was {0} for {1}";//todo to put or not to put meas_unit
         //0:measure_max_value, 1:dimension_max, 2:measure_max
 
-        templates[0][patt] = ",looking through the data some certain patterns have been detected {0}";
+        templates[0][patt] = ",looking through the data some certain pattern{1} have been detected {0}";
         //0:the patterns
 
         templates[0][inc] = ",over the {1} the {0} has increased by {2}.";
@@ -80,7 +80,7 @@ public class Templates {
         templates[1][max] = ",the highest {2} is about {0} measure_unit for {1}";//todo to put or not to put meas_unit
         //0:measure_max_value, 1:dimension_max, 2:measure_max
 
-        templates[1][patt] = ",the following patterns have been observed: {0}";
+        templates[1][patt] = ",the following pattern{1} have been observed: {0}";
         //0:the patterns
 
         templates[1][inc] = ",{0} has increased in {1} by {2}.";
@@ -170,7 +170,11 @@ public class Templates {
         thirdSentence = MessageFormat.format(thirdSentence,thirdSenMap.get("measure_min_value"),
                 thirdSenMap.get("dimension_min"),thirdSenMap.get("measure_min"));
 
-        fourthSentence = MessageFormat.format(fourthSentence,allPatterns.toString());
+        if(patterns.size()>1){
+            fourthSentence = MessageFormat.format(fourthSentence,allPatterns.toString(),"");
+        }
+        else
+            fourthSentence = MessageFormat.format(fourthSentence,allPatterns.toString(),"s");
 
         if(fifthKey.equals("steady")){
             fifthSentence = MessageFormat.format(fifthSentence,dimension,measure);
