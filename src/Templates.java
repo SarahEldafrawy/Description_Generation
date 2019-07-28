@@ -88,6 +88,28 @@ public class Templates {
         templates[1][steady] = "There has been no change in {1} over the {0}.";
         //0:dimension, 1:measure
 
+        templates[2][intro] = "the {2} illustrates the {3} in " +
+                "{0} of {4} dimension_unit {1} for the dimension_value {0},"; //todo to put or not to put dim_unit
+        //0:dimension, 1:measure, 2:type, 3:title, 4:dimension_type
+
+        templates[2][min] = "the least {2} is about {0} measure_unit for {1},";
+        //0:measure_min_value, 1:dimension_min, 2:measure_min
+
+        templates[2][max] = "the most {2} is about {0} measure_unit for {1},";//todo to put or not to put meas_unit
+        //0:measure_max_value, 1:dimension_max, 2:measure_max
+
+        templates[2][patt] = "the following patterns have been observed: {0},";
+        //0:the patterns
+
+        templates[2][inc] = "{0} is increasing by {1},";
+        //0:dimension, 1:slope
+
+        templates[2][dec] = "{0} is decreasing by {1},";
+        //0:dimension, 1:slope
+
+        templates[2][steady] = "There has been no change in {1} over the {0}.";
+        //0:dimension, 1:measure
+
     }
     /*
         fillin template : choose a template and fill it with appropriate values
@@ -99,11 +121,11 @@ public class Templates {
         int firstSentenceIndex, secondSentenceIndex, thirdSentenceIndex, fourthSentenceIndex, fifthSentenceIndex;
         String dimension, measure, fifthKey; //inc,dec,steady
         Random rand = new Random();
-        firstSentenceIndex = rand.nextInt(4);
-        secondSentenceIndex = rand.nextInt(4);
+        firstSentenceIndex = rand.nextInt(3);
+        secondSentenceIndex = rand.nextInt(3);
         thirdSentenceIndex = secondSentenceIndex;
-        fourthSentenceIndex = rand.nextInt(4);
-        fifthSentenceIndex = rand.nextInt(4);
+        fourthSentenceIndex = rand.nextInt(3);
+        fifthSentenceIndex = rand.nextInt(3);
 
         String firstSentence = templates[firstSentenceIndex][intro],
                 secondSentence = templates[secondSentenceIndex][min],
@@ -160,14 +182,17 @@ public class Templates {
 
         thirdSentence = MessageFormat.format(thirdSentence,thirdSenMap.get("measure_max_value"),
                 thirdSenMap.get("dimension_max"),thirdSenMap.get("measure_max"));
-
         fourthSentence = MessageFormat.format(fourthSentence,allPatterns.toString());
 
         if(fifthKey.equals("steady")){
             fifthSentence = MessageFormat.format(fifthSentence,dimension,measure);
         }
         else if(fifthKey.equals("increase")||fifthKey.equals("decrease")){
-            fifthSentence = MessageFormat.format(fifthSentence,dimension,measure,fifthSenMap.get("slope"));
+            if(fifthSentenceIndex == 2) {
+                fifthSentence = MessageFormat.format(fifthSentence, dimension, fifthSenMap.get("slope"));
+            } else {
+                fifthSentence = MessageFormat.format(fifthSentence, dimension, measure, fifthSenMap.get("slope"));
+            }
         }
         else{
         }
