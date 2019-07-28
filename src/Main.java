@@ -68,10 +68,35 @@ public class Main {
         DescreptionReader descreptionReader = new DescreptionReader();
         Templates templates = new Templates();
         String inputText = templates.generateDescription(mapBuilder.getStatisticsMap(),mapBuilder.getPatterns());
-        inputText = inputText.replaceAll(" ","+");
+        String description = inputText;
+        description = description.replaceAll(",","\n");
+        System.out.println(description);
+        //inputText = inputText.replaceAll(" ","+");
+        DescriptionReader descriptionReader = new DescriptionReader();
+        descriptionReader.generateFile(description);
+        //System.out.println(inputText);
         //put it in the url
-        descreptionReader.getFile("http://localhost:59125/process?INPUT_TEXT=" +
-                inputText +
-                "&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US");
+        //descreptionReader.getFile("http://localhost:59125/process?INPUT_TEXT=" +
+        //        inputText +
+         //       "&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US&voice=cmu-rms-hsmm");
+        /*
+        * voices:
+dfki-spike-hsmm en_GB male hmm
+dfki-spike en_GB male unitselection general
+dfki-prudence-hsmm en_GB female hmm
+dfki-prudence en_GB female unitselection general
+dfki-poppy-hsmm en_GB female hmm
+dfki-poppy en_GB female unitselection general
+dfki-obadiah-hsmm en_GB male hmm
+dfki-obadiah en_GB male unitselection general
+cmu-slt-hsmm en_US female hmm
+cmu-slt en_US female unitselection general
+cmu-rms-hsmm en_US male hmm
+cmu-rms en_US male unitselection general
+cmu-bdl-hsmm en_US male hmm
+cmu-bdl en_US male unitselection general
+        *
+        * */
+
     }
 }
