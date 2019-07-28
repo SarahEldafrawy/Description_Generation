@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.toMap;
 
 public class Main {
 
-    public static void main (String[]args) throws IOException {
+    public static void main (String[]args) throws Exception {
 //        List<Double> list = new ArrayList<>();
 //
 //        list.add(1.0);
@@ -54,6 +54,12 @@ public class Main {
         System.out.println(analyticsObj.getPatterns());
 
 
+        DescreptionReader descreptionReader = new DescreptionReader();
+        Templates templates = new Templates();
+        //String inputText = templates.generateDescription(map,arraylist);
+        //input text replace all spaces with +
+        //put it in the url
+        descreptionReader.getFile("http://localhost:59125/process?INPUT_TEXT=Hello+world&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US");
 //
 //    public static void main (String[]args) throws Exception{
 //        //Main su = new Main();
@@ -65,11 +71,5 @@ public class Main {
 //                "different data series that are independent of each other");
 //        su.terminate();
 //*/
-//        DescreptionReader descreptionReader = new DescreptionReader();
-//        Templates templates = new Templates();
-//        //String inputText = templates.generateDescription(map,arraylist);
-//        //input text replace all spaces with +
-//        //put it in the url
-//        descreptionReader.getFile("http://localhost:59125/process?INPUT_TEXT=Hello+world&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US");
-    }
+            }
 }
