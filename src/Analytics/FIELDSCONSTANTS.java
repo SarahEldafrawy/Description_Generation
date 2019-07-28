@@ -32,4 +32,9 @@ public class FIELDSCONSTANTS {
     public static final String SLOPE = "slope";
 
     /* Rate sentence fields */
+
+    /* chart types */
+    public static final String BAR_CHART = "bar_chart";
+    public static final String LINE_CHART = "line_chart";
+
 }

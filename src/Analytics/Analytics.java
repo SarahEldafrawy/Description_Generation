@@ -1,15 +1,18 @@
 package Analytics;
 
 import javafx.util.Pair;
-import java.util.ArrayList;
-import java.util.Collections;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
 import org.apache.commons.math3.stat.regression.SimpleRegression;
 import static Analytics.FIELDSCONSTANTS.DECREASING;
 import static Analytics.FIELDSCONSTANTS.INCREASING;
+import static java.util.stream.Collectors.toMap;
 
 public class Analytics implements IAnalytics{
 
-    private ArrayList<Pair<String, Double>>  dataset; //Pair<dimension, measure_value>
+    private ArrayList<Pair<String, Double>> dataset; //Pair<dimension, measure_value>
 
     public Analytics(ArrayList<Pair<String, Double>> dataset) {
         this.dataset = dataset;
@@ -42,32 +45,60 @@ public class Analytics implements IAnalytics{
 
     @Override
     public ArrayList<Pair<String, Double>> getPatterns() {
-        //TODO implement
-
-        //Map<String, Long> counts =
-        //    list.stream().collect(Collectors.groupingBy(e -> e, Collectors.counting()));
-        ArrayList<Double> list = new ArrayList<>();
+        ArrayList<Pair<String, Double>> patternsList = new ArrayList<>();
         ArrayList<Double> normList = new ArrayList<>();
         //getList of Double values
         for (int i = 0; i < dataset.size(); i++) {
-            list.add(dataset.get(i).getValue());
             normList.add(dataset.get(i).getValue());
         }
         //perform normalization
         norm(normList);
+        normList.forEach(i -> normList.set(normList.indexOf(i), (double) Math.round(i*10)));
         //get occurences
-
+        Map<Double, Long> collect = normList.stream().collect(
+                Collectors.groupingBy(e -> e, Collectors.counting()));
+        //remove 1 occurence
+        collect.values().removeIf(value -> value == 1);
+        //sorting map by descending values
+        Map<Double, Long> sorted = collect
+                .entrySet()
+                .stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .collect(
+                        toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2,
+                                LinkedHashMap::new));
         //->start loop stop at 2
         //find index of most occurences
-
-        //get keyValues and add them in a list -> forloop
-        // concatenate using comma and 'and'
-
-        //insert pattern in the list
-        //-> again
-        return null;
+        for(Map.Entry<Double, Long> entry : sorted.entrySet()) {
+            //get keyValues and add them in a list
+            // -> forloop
+            //insert pattern in the list
+            //-> again
+            StringBuilder dimensions = new StringBuilder();
+            ArrayList<Double> values = new ArrayList<>();
+            for (int i = 0; i < normList.size(); i++) {
+                if (normList.get(i).equals(entry.getKey())) {
+                    values.add(dataset.get(i).getValue());
+                    dimensions.append(dataset.get(i).getKey());
+                    dimensions.append(", ");
+                }
+            }
+            if (dimensions.length() > 0) {
+                dimensions.replace(dimensions.lastIndexOf(", "), dimensions.lastIndexOf(",") + 1, "" );
+                dimensions.replace(dimensions.lastIndexOf(", "), dimensions.lastIndexOf(",") + 1, " and" );
+                patternsList.add(new Pair<>(dimensions.toString(), getMedian(values)));
+            }
+        }
+        return patternsList;
     }
-
+    private double getMedian(ArrayList<Double> list){
+        Collections.sort(list);
+        if (list.size()%2 == 1) {
+            return (list.get(list.size()/2) + list.get(list.size()/2 - 1))/2;
+        } else {
+            return list.get(list.size() / 2);
+        }
+    }
     private void norm(ArrayList<Double> list) {
         double max = Collections.max(list);
         double min = Collections.min(list);
@@ -80,7 +111,6 @@ public class Analytics implements IAnalytics{
     @Override
     /*returns <<Increasing/Decreasing, rate>, <dimension, measure>>*/
     public Pair<String, Double> getSlope() {
-        //TODO check if its working correctly
 
         ArrayList<String> dimensions = new ArrayList<>(); //set of dimensions
         for (int i = 0; i< dataset.size(); i++) {
@@ -92,7 +122,7 @@ public class Analytics implements IAnalytics{
         double[][] points = new double[2][dataset.size()];
         for (int i = 0; i < dataset.size(); i++) {
             points[0][i] = dimensions.indexOf(dataset.get(i).getKey());
-            points[1][i] = dataset.get(i).getValue(); //TODO check if this is working
+            points[1][i] = dataset.get(i).getValue();
         }
 
         // creating regression object, passing true to have intercept term
@@ -103,13 +133,11 @@ public class Analytics implements IAnalytics{
         simpleRegression.addData(points);
 
         // querying for model parameters
-        System.out.println("slope = " + simpleRegression.getSlope());
-        System.out.println("intercept = " + simpleRegression.getIntercept());
 
         if (simpleRegression.getSlope() > 0) {
-            return new Pair<>(INCREASING, simpleRegression.getSlope());
+            return new Pair<>(INCREASING, (double) Math.round(simpleRegression.getSlope()*10)/10);
         } else {
-            return new Pair<>(DECREASING, simpleRegression.getSlope());
+            return new Pair<>(DECREASING, (double) Math.round(simpleRegression.getSlope()*10)/10);
         }
     }
 }
