@@ -53,7 +53,7 @@ public class StatisticsMapOneMOneD {
         map.put(MEASURE_MAX_VALUE, returnedPair.getValue().toString());
         map.put(DIMENSION_MAX, returnedPair.getKey());
 
-        this.statisticsMap.put(MIN, map);
+        this.statisticsMap.put(MAX, map);
     }
 
     private void setMin(Analytics analyticsObj, String measure) {
@@ -64,7 +64,7 @@ public class StatisticsMapOneMOneD {
         map.put(MEASURE_MIN_VALUE, returnedPair.getValue().toString());
         map.put(DIMENSION_MIN, returnedPair.getKey());
 
-        this.statisticsMap.put(MAX, map);
+        this.statisticsMap.put(MIN, map);
     }
 
 

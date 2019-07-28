@@ -6,8 +6,6 @@ public class FIELDSCONSTANTS {
     public static final String INTRODUCTION = "intro";
     public static final String MIN = "min";
     public static final String MAX = "max";
-    public static final String PATTERN = "pattern";
-    public static final String RATE = "rate";
 
     /* Introduction sentence fields */
     public static final String TYPE = "type";

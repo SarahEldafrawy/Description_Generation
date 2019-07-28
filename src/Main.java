@@ -10,7 +10,7 @@ import static java.util.stream.Collectors.toMap;
 
 public class Main {
 
-    public static void main (String[]args) throws IOException {
+    public static void main (String[]args) throws Exception {
 //        List<Double> list = new ArrayList<>();
 //
 //        list.add(1.0);
@@ -38,7 +38,7 @@ public class Main {
 //        System.out.println(sorted);
 
         ReadingCSV read = new ReadingCSV();
-        read.readFile("/home/kamal/IdeaProjects/Templates-Analytics/src/Incorta-Analytics-data/data1.csv");
+        read.readFile("/home/saraheldafrawy/Templates-Analytics/src/Incorta-Analytics-data/data1.csv");
         StatisticsMapOneMOneD mapBuilder = new StatisticsMapOneMOneD(
                 read.getDataset(), read.getMeasure(), read.getDimension(),
                 BAR_CHART, "Products Revenue From branches");
@@ -65,20 +65,11 @@ public class Main {
 //                "different data series that are independent of each other");
 //        su.terminate();
 //*/
-        DescreptionReader descreptionReader = new DescreptionReader();
-        Templates templates = new Templates();
-        String inputText = templates.generateDescription(mapBuilder.getStatisticsMap(),analyticsObj.getPatterns());
-        inputText = inputText.replaceAll(" ","+");
-        System.out.println(inputText);
-
-
-
-        try {
-            descreptionReader.getFile("http://localhost:59125/process?INPUT_TEXT=" +
-                    inputText +
-                    "&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        DescreptionReader descreptionReader = new DescreptionReader();
+//        Templates templates = new Templates();
+//        //String inputText = templates.generateDescription(map,arraylist);
+//        //input text replace all spaces with +
+//        //put it in the url
+//        descreptionReader.getFile("http://localhost:59125/process?INPUT_TEXT=Hello+world&INPUT_TYPE=TEXT&OUTPUT_TYPE=AUDIO&AUDIO=WAVE_FILE&LOCALE=en_US");
     }
 }
