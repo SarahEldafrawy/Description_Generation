@@ -165,7 +165,7 @@ public class Templates {
             allPatterns.append(adjustPercision((Double) pattern.getValue()));
         }
 
-        if(fifthSenMap.containsKey("title")){
+        if(firstSenMap.containsKey("title")){
             firstSentence = MessageFormat.format(firstSentence,dimension,measure,
                     firstSenMap.get("type"), firstSenMap.get("title"));
         }
