@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
-import static Analytics.FIELDSCONSTANTS.DECREASING;
-import static Analytics.FIELDSCONSTANTS.INCREASING;
+import static Analytics.FIELDSCONSTANTS.*;
 
 
 public class Templates {
@@ -198,7 +197,7 @@ public class Templates {
             allPatterns.append("have about the same ");
             allPatterns.append(measure);
             allPatterns.append(" which is nearly ");
-            allPatterns.append(adjustPercision((Double) pattern.getValue()));
+            allPatterns.append(adjustPercision((Double) pattern.getValue(),firstSenMap.get("type")));
             if(firstSentenceIndex==3){
                 allPatterns.append("%");
             }
@@ -214,10 +213,10 @@ public class Templates {
                     firstSenMap.get("type"));
         }
 
-        secondSentence = MessageFormat.format(secondSentence,adjustPercisionS(secondSenMap.get("measure_min_value")),
+        secondSentence = MessageFormat.format(secondSentence,adjustPercisionS(secondSenMap.get("measure_min_value"),firstSenMap.get("type")),
                 secondSenMap.get("dimension_min"),secondSenMap.get("measure_min").replaceAll("\"",""));
 
-        thirdSentence = MessageFormat.format(thirdSentence,adjustPercisionS(thirdSenMap.get("measure_max_value")),
+        thirdSentence = MessageFormat.format(thirdSentence,adjustPercisionS(thirdSenMap.get("measure_max_value"),firstSenMap.get("type")),
                 thirdSenMap.get("dimension_max"),thirdSenMap.get("measure_max").replaceAll("\"",""));
 
         if(patterns.size()>1){
@@ -252,15 +251,16 @@ public class Templates {
     }
 
 
-    private String adjustPercisionS(String value){
+    private String adjustPercisionS(String value,String type) {
+        String returnedValue = value;
+        if(!type.equals(PIE_CHART)){
         StringBuilder percision = new StringBuilder();
-        String val= value;
-        String fraction = val.substring(val.length()-2,val.length());
-        val = val.substring(0,val.length()-2);
-        if(val.length()<=3) {
+        String val = value;
+        String fraction = val.substring(val.length() - 2, val.length());
+        val = val.substring(0, val.length() - 2);
+        if (val.length() <= 3) {
             percision.append(val);
-        }
-        else {
+        } else {
             int valSize = val.length();
             if (val.length() > 3) {
                 percision.append(val.substring(0, 3));
@@ -271,18 +271,19 @@ public class Templates {
                 }
             }
         }
-        String returnedValue = percision.toString();
-        if(Integer.parseInt(Character.toString(fraction.charAt(1)))>=5){
-            int leastDigit = Integer.parseInt(Character.toString(returnedValue.charAt(returnedValue.length()-1)));
+        returnedValue = percision.toString();
+        if (Integer.parseInt(Character.toString(fraction.charAt(1))) >= 5) {
+            int leastDigit = Integer.parseInt(Character.toString(returnedValue.charAt(returnedValue.length() - 1)));
             leastDigit++;
-            returnedValue = returnedValue.substring(0,returnedValue.length()-1);
-            returnedValue = returnedValue+leastDigit;
+            returnedValue = returnedValue.substring(0, returnedValue.length() - 1);
+            returnedValue = returnedValue + leastDigit;
+        }
         }
         return returnedValue;
     }
 
-    private String adjustPercision(double value){
+    private String adjustPercision(double value,String type){
         String val= String.valueOf(value);
-        return adjustPercisionS(val);
+        return adjustPercisionS(val,type);
     }
 }

@@ -7,7 +7,7 @@ import static java.util.stream.Collectors.toMap;
 public class Main {
 
     public static void main (String[]args) throws Exception {
-        ReadingCSV5 read = new ReadingCSV5();
+        ReadingCSV2 read = new ReadingCSV2();
         read.readFile();
         StatisticsMapOneMOneD mapBuilder = new StatisticsMapOneMOneD(
                 read.getDataset(), read.getMeasure(), read.getDimension(),
