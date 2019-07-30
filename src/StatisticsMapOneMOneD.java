@@ -19,7 +19,6 @@ public class StatisticsMapOneMOneD {
         Analytics analyticsObj = new Analytics(dataset);
         if(chartType == LINE_CHART) {
             this.setRate(analyticsObj, measure, dimension);
-
         }
         this.setMax(analyticsObj, measure);
         this.setMin(analyticsObj, measure);
