@@ -48,6 +48,8 @@ public class Templates {
         //todo keep the measure and the dimension from the first sentence to use then
         templates[0] = new String[7];//j=4:increase, j=5:decrease
         templates[1] = new String[7];//j=4:increase, j=5:decrease
+        templates[2] = new String[7];//j=4:increase, j=5:decrease
+
         templates[0][intro] = "This {2} deals with the {3} as a relation between {1} and {0} particularly in {4}";
         //todo to put or not to put dim_unit
         //0:dimension, 1:measure, 2:type, 3:title, 4:dimension_type
