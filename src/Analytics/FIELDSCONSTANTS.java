@@ -34,5 +34,6 @@ public class FIELDSCONSTANTS {
     /* chart types */
     public static final String BAR_CHART = "bar chart";
     public static final String LINE_CHART = "line chart";
+    public static final String PIE_CHART = "pie chart";
 
 }
