@@ -255,6 +255,7 @@ public class Templates {
     private String adjustPercisionS(String value){
         StringBuilder percision = new StringBuilder();
         String val= value;
+        String fraction = val.substring(val.length()-2,val.length());
         val = val.substring(0,val.length()-2);
         if(val.length()<=3) {
             percision.append(val);
@@ -269,6 +270,12 @@ public class Templates {
                     percision.append("0");
                 }
             }
+        }
+        String returnedValue = percision.toString();
+        if(Integer.parseInt(Character.toString(fraction.charAt(1)))>=5){
+            int leastDigit = Integer.parseInt(Character.toString(returnedValue.charAt(returnedValue.length()-1)));
+            leastDigit++;
+            percision.append(leastDigit);
         }
         return percision.toString();
     }
