@@ -1,7 +1,7 @@
 //import IncortaAPI.*;
 //import sample.DescreptionReader;
 //import sample.StatisticsMapOneMOneD;
-//import sample.Templates;
+
 //
 //import static java.util.stream.Collectors.toMap;
 //
