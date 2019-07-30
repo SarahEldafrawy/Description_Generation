@@ -53,7 +53,12 @@ public class Analytics implements IAnalytics{
         }
         //perform normalization
         norm(normList);
-        normList.forEach(i -> normList.set(normList.indexOf(i), (double) Math.round(i*10)));
+        System.out.println(normList);
+//        normList.forEach(i -> normList.set(normList.indexOf(i), (double) Math.round(i*10)));
+        for(int i = 0; i< normList.size(); i++) {
+            normList.set(i,(double) Math.round(normList.get(i)*100)/10);
+        }
+        System.out.println(normList);
         //get occurences
         Map<Double, Long> collect = normList.stream().collect(
                 Collectors.groupingBy(e -> e, Collectors.counting()));

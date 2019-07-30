@@ -12,7 +12,7 @@ public class StatisticsMapOneMOneD {
     private Map<String, Map<String,String>> statisticsMap;
     private ArrayList<Pair<String, Double>> patternsList;
 
-    StatisticsMapOneMOneD(ArrayList<Pair<String, Double>>  dataset, String measure, String dimension, String chartType, String title) {
+    StatisticsMapOneMOneD(ArrayList<Pair<String, Double>>  dataset, String measure, String dimension, String chartType) {
         // NOTE: WE CONSIDER ONLY BAR CHART AND LINE CHARTS
         statisticsMap = new HashMap<>();
         patternsList = new ArrayList<>();
@@ -23,11 +23,11 @@ public class StatisticsMapOneMOneD {
         this.setMax(analyticsObj, measure);
         this.setMin(analyticsObj, measure);
         this.detectPatterns(analyticsObj);
-        this.addIntro(measure, dimension, chartType, title);
+        this.addIntro(measure, dimension, chartType);
         this.checkValidAnalytics();
     }
 
-    private void addIntro(String measure, String dimension, String chartType, String title) {
+    private void addIntro(String measure, String dimension, String chartType) {
         /*    public static final String TYPE = "type";
     public static final String TITLE = "title";
     public static final String DIMENSION = "dimension";
@@ -37,10 +37,8 @@ public class StatisticsMapOneMOneD {
          */
         Map<String, String> map = new HashMap<>();
         map.put(TYPE, chartType);
-        map.put(TITLE, title);
         map.put(MEASURE, measure);
         map.put(DIMENSION, dimension);
-        map.put(DIMENSION_TYPES, "not yet implemented by sarah");
         this.statisticsMap.put(INTRODUCTION, map);
     }
 

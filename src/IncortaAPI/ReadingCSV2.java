@@ -7,6 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static Analytics.FIELDSCONSTANTS.BAR_CHART;
+import static Analytics.FIELDSCONSTANTS.LINE_CHART;
+
 public class ReadingCSV2 {
 
     private String dimension;
@@ -40,5 +43,9 @@ public class ReadingCSV2 {
 
     public ArrayList<Pair<String, Double>> getDataset() {
         return this.dataset;
+    }
+
+    public String getTitle() {
+        return LINE_CHART;
     }
 }

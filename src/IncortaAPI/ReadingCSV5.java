@@ -8,9 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static Analytics.FIELDSCONSTANTS.BAR_CHART;
-import static Analytics.FIELDSCONSTANTS.PIE_CHART;
 
-public class ReadingCSV1 {
+public class ReadingCSV5 {
 
     private String dimension;
     private String measure;
@@ -19,16 +18,18 @@ public class ReadingCSV1 {
     //"/home/saraheldafrawy/Templates-Analytics/src/Incorta-Analytics-data/data1.csv"
     public void readFile() throws IOException {
         dataset = new ArrayList<>();
-        BufferedReader csvReader = new BufferedReader(new FileReader("/home/saraheldafrawy/Templates-Analytics/src/Incorta-Analytics-data/data1.csv"));
+        BufferedReader csvReader = new BufferedReader(new FileReader("/home/saraheldafrawy/Templates-Analytics/src/Incorta-Analytics-data/data5.csv"));
         String row = csvReader.readLine();
         String[] data = row.split(",");
-        this.dimension = data[1].replaceAll("\"", "");
+        this.dimension = data[0].replaceAll("\"", "");
+        this.dimension.concat(" in ").concat(data[1]);
         this.measure = data[2].replaceAll("\"", "");
         while ((row = csvReader.readLine()) != null) {
             data = row.split(",");
-            dataset.add(new Pair<>(data[1].replaceAll("\"", ""), (Double.parseDouble(data[2].replaceAll("\"", "").substring(0, data[2].indexOf("."))))));
+            dataset.add(new Pair<>(data[0].replaceAll("\"", "").concat(" in ").concat(data[1]).replaceAll("\"", ""),
+                    (Double.parseDouble(data[2].replaceAll("\"", "").substring(0, data[2].indexOf("."))))));
         }
-//        System.out.println(dataset);
+        System.out.println(dataset);
         csvReader.close();
     }
 
@@ -43,6 +44,7 @@ public class ReadingCSV1 {
     public ArrayList<Pair<String, Double>> getDataset() {
         return this.dataset;
     }
+
     public String getTitle() {
         return BAR_CHART;
     }

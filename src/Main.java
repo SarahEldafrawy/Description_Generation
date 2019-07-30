@@ -1,6 +1,4 @@
-import IncortaAPI.ReadingCSV1;
-import IncortaAPI.ReadingCSV2;
-import IncortaAPI.ReadingCSV3;
+import IncortaAPI.*;
 
 import static Analytics.FIELDSCONSTANTS.BAR_CHART;
 import static Analytics.FIELDSCONSTANTS.LINE_CHART;
@@ -9,11 +7,11 @@ import static java.util.stream.Collectors.toMap;
 public class Main {
 
     public static void main (String[]args) throws Exception {
-        ReadingCSV3 read = new ReadingCSV3();
+        ReadingCSV5 read = new ReadingCSV5();
         read.readFile();
         StatisticsMapOneMOneD mapBuilder = new StatisticsMapOneMOneD(
                 read.getDataset(), read.getMeasure(), read.getDimension(),
-                LINE_CHART, "Products Revenue From branches");
+                read.getTitle());
         System.out.println(mapBuilder.getStatisticsMap());
         System.out.println(mapBuilder.getPatterns());
 //        System.out.println();
