@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
+import static Analytics.FIELDSCONSTANTS.DECREASING;
+import static Analytics.FIELDSCONSTANTS.INCREASING;
+
 
 public class Templates {
     /*
@@ -20,13 +23,6 @@ public class Templates {
         createTemplates();
     }
     private void createTemplates(){
-//        //todo keep the measure and the dimension from the first sentence to use then
-//        templates[0] = new String[7];//j=4:increase, j=5:decrease
-//        templates[1] = new String[7];//j=4:increase, j=5:decrease
-//        templates[2] = new String[7];//j=4:increase, j=5:decrease
-//
-//        templates[0][intro] = "This {2} deals with the {3} as a relation between {1} and {0} particularly in {4}";
-//        //todo to put or not to put dim_unit
         templates[0] = new String[8];//j=4:increase, j=5:decrease
         templates[1] = new String[8];//j=4:increase, j=5:decrease
         templates[2] = new String[8];//j=4:increase, j=5:decrease
@@ -131,15 +127,15 @@ public class Templates {
         Map<String, String> thirdSenMap = statistics.get("max");
         Map<String, String> fifthSenMap ;
 
-        if(statistics.containsKey("increase")){
-         fifthSenMap = statistics.get("increase");
+        if(statistics.containsKey(INCREASING)){
+         fifthSenMap = statistics.get(INCREASING);
          fifthSentence = templates[fifthSentenceIndex][inc];
-         fifthKey = "increase";
+         fifthKey = INCREASING;
         }
-        else if(statistics.containsKey("decrease")){
-         fifthSenMap = statistics.get("decrease");
+        else if(statistics.containsKey(DECREASING)){
+         fifthSenMap = statistics.get(DECREASING);
          fifthSentence = templates[fifthSentenceIndex][dec];
-         fifthKey = "decrease";
+         fifthKey = DECREASING;
         }
         else if(statistics.containsKey("steady")){
          fifthSenMap = statistics.get("steady");
@@ -196,7 +192,7 @@ public class Templates {
         if(fifthKey.equals("steady")){
             fifthSentence = MessageFormat.format(fifthSentence,measure);
         }
-        else if(fifthKey.equals("increase")||fifthKey.equals("decrease")){
+        else if(fifthKey.equals(INCREASING)||fifthKey.equals(DECREASING)){
             if(fifthSentenceIndex == 2) {
                 fifthSentence = MessageFormat.format(fifthSentence,measure);
             } else {

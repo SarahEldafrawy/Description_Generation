@@ -124,7 +124,7 @@ public class Analytics implements IAnalytics{
             points[0][i] = dimensions.indexOf(dataset.get(i).getKey());
             points[1][i] = dataset.get(i).getValue();
         }
-
+        System.out.println(points);
         // creating regression object, passing true to have intercept term
         SimpleRegression simpleRegression = new SimpleRegression(true);
 
@@ -133,8 +133,9 @@ public class Analytics implements IAnalytics{
         simpleRegression.addData(points);
 
         // querying for model parameters
-
-        if (simpleRegression.getSlope() > 0) {
+//        System.out.println(simpleRegression.get);
+        System.out.println(simpleRegression.getSlope());
+        if (simpleRegression.getSlope() < 0) {
             return new Pair<>(INCREASING, (double) Math.round(simpleRegression.getSlope()*10)/10);
         } else {
             return new Pair<>(DECREASING, (double) Math.round(simpleRegression.getSlope()*10)/10);
