@@ -275,9 +275,10 @@ public class Templates {
         if(Integer.parseInt(Character.toString(fraction.charAt(1)))>=5){
             int leastDigit = Integer.parseInt(Character.toString(returnedValue.charAt(returnedValue.length()-1)));
             leastDigit++;
-            percision.append(leastDigit);
+            returnedValue = returnedValue.substring(0,returnedValue.length()-1);
+            returnedValue = returnedValue+leastDigit;
         }
-        return percision.toString();
+        return returnedValue;
     }
 
     private String adjustPercision(double value){
