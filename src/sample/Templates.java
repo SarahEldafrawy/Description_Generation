@@ -1,3 +1,5 @@
+package sample;
+
 import javafx.util.Pair;
 
 import java.text.MessageFormat;

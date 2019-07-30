@@ -1,3 +1,5 @@
+package sample;
+
 import Analytics.Analytics;
 import javafx.util.Pair;
 import java.util.ArrayList;
