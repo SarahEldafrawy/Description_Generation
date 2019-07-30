@@ -18,7 +18,7 @@ public class ReadingCSV4 {
     //"/home/saraheldafrawy/Templates-Analytics/src/Incorta-Analytics-data/data1.csv"
     public void readFile() throws IOException {
         dataset = new ArrayList<>();
-        BufferedReader csvReader = new BufferedReader(new FileReader("/home/saraheldafrawy/Templates-Analytics/src/Incorta-Analytics-data/data4.csv"));
+        BufferedReader csvReader = new BufferedReader(new FileReader("/home/kamal/IdeaProjects/Templates-Analytics/src/Incorta-Analytics-data/data4.csv"));
         String row = csvReader.readLine();
         String[] data = row.split(",");
         this.dimension = data[0].replaceAll("\"", "");

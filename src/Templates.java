@@ -26,6 +26,7 @@ public class Templates {
         templates[0] = new String[8];//j=4:increase, j=5:decrease
         templates[1] = new String[8];//j=4:increase, j=5:decrease
         templates[2] = new String[8];//j=4:increase, j=5:decrease
+        templates[3] = new String[8];//for pie chart
         templates[0][intro] = "This {2} deals with the {3} as a relation between {1} and {0}\n";
         //0:dimension, 1:measure, 2:type, 3:title, 4:dimension_type
 
@@ -97,6 +98,31 @@ public class Templates {
         templates[2][steady] = "There has been no change in {1} over the {0}.";
         //0:dimension, 1:measure
 
+        templates[3][intro] = "This {2} deals with the {3} as a relation between {1} and {0}\n";
+        //0:dimension, 1:measure, 2:type, 3:title, 4:dimension_type
+
+        templates[3][introNoTitle] ="This {2} describes a relation between {1} and {0}\n";
+        //0:dimension, 1:measure
+
+        templates[3][min] = "We can see that the lowest share of {2} was {0}% for {1}";
+        //0:measure_min_value, 1:dimension_min, 2:measure_min
+
+        templates[3][max] = ",and the highest share of {2} was {0}% for {1}\n";
+        //0:measure_max_value, 1:dimension_max, 2:measure_max
+
+        templates[3][patt] = "looking through the data some pattern{1} been detected: {0}\n";
+        //0:the patterns
+
+        templates[3][inc] = "looking through the data it was found the {0} is increasing.";
+        //0:measure
+
+        templates[3][dec] = "looking through the data it was found the {0} is decreasing.";
+        //0:measure
+
+        templates[3][steady] = "There has been no change the {0}.";
+        //0:measure
+
+
     }
     /*
         fillin template : choose a template and fill it with appropriate values
@@ -121,11 +147,18 @@ public class Templates {
                 fourthSentence = templates[fourthSentenceIndex][patt],
                 fifthSentence;
 
-
         Map<String, String> firstSenMap = statistics.get("intro");
         Map<String, String> secondSenMap = statistics.get("min");
         Map<String, String> thirdSenMap = statistics.get("max");
         Map<String, String> fifthSenMap ;
+
+        if(firstSenMap.get("type").equals("pie chart")){
+            firstSentenceIndex=secondSentenceIndex=thirdSentenceIndex=fourthSentenceIndex=fifthSentenceIndex=3;
+            firstSentence = templates[firstSentenceIndex][intro];
+            secondSentence = templates[secondSentenceIndex][min];
+            thirdSentence = templates[thirdSentenceIndex][max];
+            fourthSentence = templates[fourthSentenceIndex][patt];
+        }
 
         if(statistics.containsKey(INCREASING)){
          fifthSenMap = statistics.get(INCREASING);
@@ -166,6 +199,9 @@ public class Templates {
             allPatterns.append(measure);
             allPatterns.append(" which is nearly ");
             allPatterns.append(adjustPercision((Double) pattern.getValue()));
+            if(firstSentenceIndex==3){
+                allPatterns.append("%");
+            }
         }
 
         if(firstSenMap.containsKey("title")){
@@ -173,6 +209,7 @@ public class Templates {
                     firstSenMap.get("type"), firstSenMap.get("title"));
         }
         else{
+            firstSentence = templates[firstSentenceIndex][introNoTitle];
             firstSentence = MessageFormat.format(firstSentence,dimension,measure,
                     firstSenMap.get("type"));
         }
@@ -218,6 +255,7 @@ public class Templates {
     private String adjustPercisionS(String value){
         StringBuilder percision = new StringBuilder();
         String val= value;
+        String fraction = val.substring(val.length()-2,val.length());
         val = val.substring(0,val.length()-2);
         if(val.length()<=3) {
             percision.append(val);
@@ -233,7 +271,14 @@ public class Templates {
                 }
             }
         }
-        return percision.toString();
+        String returnedValue = percision.toString();
+        if(Integer.parseInt(Character.toString(fraction.charAt(1)))>=5){
+            int leastDigit = Integer.parseInt(Character.toString(returnedValue.charAt(returnedValue.length()-1)));
+            leastDigit++;
+            returnedValue = returnedValue.substring(0,returnedValue.length()-1);
+            returnedValue = returnedValue+leastDigit;
+        }
+        return returnedValue;
     }
 
     private String adjustPercision(double value){
