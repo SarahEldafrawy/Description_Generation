@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static Analytics.FIELDSCONSTANTS.BAR_CHART;
 import static Analytics.FIELDSCONSTANTS.PIE_CHART;
 
 public class ReadingCSV4 {
