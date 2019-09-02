@@ -255,10 +255,11 @@ public class Templates {
 
     private String adjustPercisionS(String value,String type) {
         String returnedValue = value;
+        String fraction = value.substring(value.length() - 2);
         if(!type.equals(PIE_CHART)){
         StringBuilder percision = new StringBuilder();
         String val = value;
-        String fraction = val.substring(val.length() - 2, val.length());
+
         val = val.substring(0, val.length() - 2);
         if (val.length() <= 3) {
             percision.append(val);
@@ -274,13 +275,16 @@ public class Templates {
             }
         }
         returnedValue = percision.toString();
-        if (Integer.parseInt(Character.toString(fraction.charAt(1))) >= 5) {
-            int leastDigit = Integer.parseInt(Character.toString(returnedValue.charAt(returnedValue.length() - 1)));
-            leastDigit++;
-            returnedValue = returnedValue.substring(0, returnedValue.length() - 1);
-            returnedValue = returnedValue + leastDigit;
         }
+        else {
+            if (Integer.parseInt(Character.toString(fraction.charAt(1))) >= 5) {
+                int leastDigit = Integer.parseInt(Character.toString(returnedValue.charAt(returnedValue.length() - 1)));
+                leastDigit++;
+                returnedValue = returnedValue.substring(0, returnedValue.length() - 1);
+                returnedValue = returnedValue + leastDigit;
+            }
         }
+
         return returnedValue;
     }
 

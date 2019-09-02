@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -18,39 +19,39 @@ public class Controller {
     private ScrollPane myScrollPane;
 
     @FXML
-    private Label description1;
+    private TextArea description1;
 
     @FXML
     private Button button1;
 
     @FXML
-    private Label description2;
+    private TextArea description2;
 
     @FXML
     private Button button2;
 
     @FXML
-    private Label description3;
+    private TextArea description3;
 
     @FXML
     private Button button3;
 
     @FXML
-    private Label description4;
+    private TextArea description4;
 
     @FXML
-    private Label description5;
+    private TextArea description5;
 
     @FXML
     private Button button4;
 
     @FXML
     void viewDescription(ActionEvent event) {
-        description1.setFont(Font.font("Verdana", FontWeight.LIGHT, 15));
-        description2.setFont(Font.font("Verdana", FontWeight.LIGHT, 15));
-        description3.setFont(Font.font("Verdana", FontWeight.LIGHT, 15));
-        description4.setFont(Font.font("Verdana", FontWeight.LIGHT, 15));
-        description5.setFont(Font.font("Verdana", FontWeight.LIGHT, 15));
+        description1.setFont(Font.font("Verdana", FontWeight.LIGHT, 20));
+        description2.setFont(Font.font("Verdana", FontWeight.LIGHT, 20));
+        description3.setFont(Font.font("Verdana", FontWeight.LIGHT, 20));
+        description4.setFont(Font.font("Verdana", FontWeight.LIGHT, 20));
+        description5.setFont(Font.font("Verdana", FontWeight.LIGHT, 20));
         String button_id = ((Button)event.getSource()).getId().substring(6, 7);
         int button_number = Integer.valueOf(button_id);
         ((Button)event.getSource()).setText("Change format");
@@ -71,8 +72,9 @@ public class Controller {
                 String inputText = templates.generateDescription(mapBuilder.getStatisticsMap(),mapBuilder.getPatterns());
                 description = inputText;
                 description1.setText(description);
+                description1.setWrapText(true);
+                description1.setEditable(false);
                 description1.setVisible(true);
-                System.out.println(description1.getText());
                 break;
             case 2 :
                 ReadingCSV2 read2 = new ReadingCSV2();
@@ -89,6 +91,8 @@ public class Controller {
                 String inputText2 = templates2.generateDescription(mapBuilder2.getStatisticsMap(),mapBuilder2.getPatterns());
                 description = inputText2;
                 description2.setText(description);
+                description2.setWrapText(true);
+                description2.setEditable(false);
                 description2.setVisible(true);
 
                 break;
@@ -107,6 +111,8 @@ public class Controller {
                 String inputText3 = templates3.generateDescription(mapBuilder3.getStatisticsMap(),mapBuilder3.getPatterns());
                 description = inputText3;
                 description3.setText(description);
+                description3.setWrapText(true);
+                description3.setEditable(false);
                 description3.setVisible(true);
 
                 break;
@@ -125,6 +131,8 @@ public class Controller {
                 String inputText4 = templates4.generateDescription(mapBuilder4.getStatisticsMap(),mapBuilder4.getPatterns());
                 description = inputText4;
                 description4.setText(description);
+                description4.setWrapText(true);
+                description4.setEditable(false);
                 description4.setVisible(true);
                 break;
             case 5 :
@@ -142,6 +150,8 @@ public class Controller {
                 String inputText5 = templates5.generateDescription(mapBuilder5.getStatisticsMap(),mapBuilder5.getPatterns());
                 description = inputText5;
                 description5.setText(description);
+                description5.setWrapText(true);
+                description5.setEditable(false);
                 description5.setVisible(true);
                 break;
         }

@@ -8,47 +8,57 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<?import javafx.scene.control.TextArea?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
-        <ScrollPane fx:id="myScrollPane" prefHeight="700.0" prefWidth="960.0">
+        <ScrollPane fx:id="myScrollPane" prefHeight="830.0" prefWidth="1300.0">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0">
                     <children>
-                        <Label fx:id="description1" layoutX="27.0" layoutY="410.0" prefHeight="141.0" prefWidth="900.0" text="Any description" textAlignment="LEFT" visible="false" />
-                        <ImageView fitHeight="400.0" fitWidth="909.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+
+                        <TextArea fx:id="description1" layoutX="40.0" layoutY="410.0" prefHeight="141.0" prefWidth="1200.0" text="Any description" visible="false" />
+                        <ImageView fitHeight="500.0" fitWidth="1200.0" layoutX="40.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../Incorta-Analytics-data/data1.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="button1" layoutX="72.0" layoutY="328.0" mnemonicParsing="false" onAction="#viewDescription" prefHeight="27.0" prefWidth="800.0" text="view description" />
-                        <Label fx:id="description2" layoutX="27.0" layoutY="1010.0" prefHeight="141.0" prefWidth="900.0" text="Any description" textAlignment="LEFT" visible="false" />
-                        <ImageView fitHeight="400.0" fitWidth="909.0" layoutX="20.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="button1" layoutX="250.0" layoutY="370.0" mnemonicParsing="false" onAction="#viewDescription" prefHeight="27.0" prefWidth="800.0" text="view description" />
+
+
+                        <TextArea fx:id="description2" layoutX="40.0" layoutY="1150.0" prefHeight="141.0" prefWidth="1200.0" text="Any description" visible="false" />
+                        <ImageView fitHeight="500.0" fitWidth="1200.0" layoutX="40.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../Incorta-Analytics-data/data2.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="button2" layoutX="72.0" layoutY="1000.0" mnemonicParsing="false" onAction="#viewDescription" prefHeight="27.0" prefWidth="800.0" text="view description" />
-                        <Label fx:id="description3" layoutX="27.0" layoutY="1610.0" prefHeight="141.0" prefWidth="900.0" text="Any description" textAlignment="LEFT" visible="false" />
-                        <ImageView fitHeight="400.0" fitWidth="909.0" layoutX="20.0" layoutY="1220.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="button2" layoutX="250.0" layoutY="1110.0" mnemonicParsing="false" onAction="#viewDescription" prefHeight="27.0" prefWidth="800.0" text="view description" />
+
+
+                        <TextArea fx:id="description3" layoutX="40.0" layoutY="1930.0" prefHeight="161.0" prefWidth="1200.0" text="Any description" visible="false" />
+                        <ImageView fitHeight="500.0" fitWidth="1200.0" layoutX="40.0" layoutY="1370.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../Incorta-Analytics-data/data3.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="button3" layoutX="72.0" layoutY="1600.0" mnemonicParsing="false" onAction="#viewDescription" prefHeight="27.0" prefWidth="800.0" text="view description" />
-                        <Label fx:id="description4" layoutX="27.0" layoutY="2210.0" prefHeight="141.0" prefWidth="900.0" text="Any description" textAlignment="LEFT" visible="false" />
-                        <ImageView fitHeight="400.0" fitWidth="909.0" layoutX="20.0" layoutY="1820.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="button3" layoutX="250.0" layoutY="1880.0" mnemonicParsing="false" onAction="#viewDescription" prefHeight="27.0" prefWidth="800.0" text="view description" />
+
+
+                        <TextArea fx:id="description4" layoutX="40.0" layoutY="2710.0" prefHeight="141.0" prefWidth="1200.0" text="Any description" visible="false" />
+                        <ImageView fitHeight="500.0" fitWidth="1200.0" layoutX="40.0" layoutY="2150.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../Incorta-Analytics-data/data4.png" />
+                                <Image url="@../Incorta-Analytics-data/data4.png"  />
                             </image>
                         </ImageView>
-                        <Button fx:id="button4" layoutX="72.0" layoutY="2220.0" mnemonicParsing="false" onAction="#viewDescription" prefHeight="27.0" prefWidth="800.0" text="view description" />
-                        <Label fx:id="description5" layoutX="27.0" layoutY="2810.0" prefHeight="141.0" prefWidth="900.0" text="Any description" textAlignment="LEFT" visible="false" />
-                        <ImageView fitHeight="338.0" fitWidth="909.0" layoutX="20.0" layoutY="2420.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="button4" layoutX="250.0" layoutY="2670.0" mnemonicParsing="false" onAction="#viewDescription" prefHeight="27.0" prefWidth="800.0" text="view description" />
+
+                        <TextArea fx:id="description5" layoutX="40.0" layoutY="3560.0" prefHeight="141.0" prefWidth="1200.0" text="Any description" visible="false" />
+                        <ImageView fitHeight="500.0" fitWidth="1200.0" layoutX="40.0" layoutY="3000.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../Incorta-Analytics-data/data5.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="button5" layoutX="32.0" layoutY="2780.0" mnemonicParsing="false" onAction="#viewDescription" prefHeight="27.0" prefWidth="800.0" text="view description" />
+                        <Button fx:id="button5" layoutX="250.0" layoutY="3510.0" mnemonicParsing="false" onAction="#viewDescription" prefHeight="27.0" prefWidth="800.0" text="view description" />
+
                     </children>
                 </AnchorPane>
             </content>
